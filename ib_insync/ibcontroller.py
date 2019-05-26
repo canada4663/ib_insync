@@ -136,7 +136,8 @@ class IBC(Object):
         win32 = os.sys.platform == 'win32'
         cmd = [
             f'{self.ibcPath}\\scripts\\StartIBC.bat' if win32 else
-            f'{self.ibcPath}/scripts/ibcstart.sh']
+            #TODO: add 'runIncontainer' option to class
+            f'/usr/bin/xvfb-run', f'-a', f'{self.ibcPath}/scripts/ibcstart.sh']
         for k, v in self.dict().items():
             arg = IBC._Args[k][2 if win32 else 1]
             if v:
